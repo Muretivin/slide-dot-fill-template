@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brands Carousel</title>
+  <style>
+    .brands-section {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .brands-carousel-container {
+      width: 100%;
+      max-width: 1000px;
+      height: 238px;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+    }
+
+    .brands-carousel-container h2 {
+      margin-bottom: 20px;
+      color: #0e2742;
+      font-family: "Outfit", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .brands-carousel-slide {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .brands-carousel-item {
+      min-width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .brands-carousel-item img {
+      width: 10%;
+      height: auto;
+    }
+
+    .brands-carousel-dots {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .brands-inner-dot {
+      height: 8px;
+      width: 8px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .brands-inner-dot.active {
+      background-color: #717171;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="brands-section">
+    <div class="brands-carousel-container">
+      <h2>Trusted by Global Brands</h2>
+      <div class="brands-carousel-slide">
+        <div class="brands-carousel-item">
+          <img src="/images/image 8.png" alt="Microsoft" />
+          <img src="/images/image 9.png" alt="Google" />
+          <img src="/images/image 10.png" alt="Airbnb" />
+          <img src="/images/image 11.png" alt="Stripe" />
+          <img src="/images/image 12.png" alt="Uber" />
+        </div>
+        <div class="brands-carousel-item">
+          <img src="/images/image 8.png" alt="Microsoft" />
+          <img src="/images/image 9.png" alt="Google" />
+          <img src="/images/image 10.png" alt="Airbnb" />
+          <img src="/images/image 11.png" alt="Stripe" />
+          <img src="/images/image 12.png" alt="Uber" />
+        </div>
+        <div class="brands-carousel-item">
+          <img src="/images/image 8.png" alt="Microsoft" />
+          <img src="/images/image 9.png" alt="Google" />
+          <img src="/images/image 10.png" alt="Airbnb" />
+          <img src="/images/image 11.png" alt="Stripe" />
+          <img src="/images/image 12.png" alt="Uber" />
+        </div>
+        <div class="brands-carousel-item">
+          <img src="/images/image 8.png" alt="Microsoft" />
+          <img src="/images/image 9.png" alt="Google" />
+          <img src="/images/image 10.png" alt="Airbnb" />
+          <img src="/images/image 11.png" alt="Stripe" />
+          <img src="/images/image 12.png" alt="Uber" />
+        </div>
+      </div>
+      <div class="brands-carousel-dots">
+        <span class="brands-inner-dot" onclick="currentSlide(0)"></span>
+        <span class="brands-inner-dot" onclick="currentSlide(1)"></span>
+        <span class="brands-inner-dot" onclick="currentSlide(2)"></span>
+        <span class="brands-inner-dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let currentIndex = 0;
+    const items = document.querySelectorAll(".brands-carousel-item");
+    const dots = document.querySelectorAll(".brands-inner-dot");
+
+    function showSlide(index) {
+      currentIndex = index;
+      const offset = -index * 100;
+      document.querySelector(".brands-carousel-slide").style.transform = `translateX(${offset}%)`;
+      dots.forEach((dot) => dot.classList.remove("active"));
+      dots[index].classList.add("active");
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % items.length;
+      showSlide(currentIndex);
+    }
+
+    function currentSlide(index) {
+      clearInterval(autoSlide);
+      showSlide(index);
+      autoSlide = setInterval(nextSlide, 5000);
+    }
+
+    let autoSlide = setInterval(nextSlide, 5000);
+
+    showSlide(currentIndex);
+  </script>
+
+</body>
+</html>
